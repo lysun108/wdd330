@@ -190,6 +190,14 @@ button {
 .card__name {
   font-size: 1em;
 }
+/* W02 - fix product image size in product list */
+.product-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
 
 /* End product list card */
 
