@@ -156,48 +156,59 @@ button {
   padding: 1rem;
 }
 
+/* W03 - switch to grid for cleaner layout (fix 3+1 awkward wrap) */
 .product-list {
-  display: flex;
-  flex-flow: row wrap;
-  list-style-type: none;
-  justify-content: center;
-
-  /* W03 - improve spacing between cards */
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 900px;
+  justify-items: center;
 }
 
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
+  width: 100%;
+  display: block;
 }
 
 /* Styles for product lists */
 .product-card {
-  flex: 1 1 45%;
-  max-width: 260px;
+  width: 100%;
+  max-width: 280px;
+  min-height: 340px;
 
   /* W03 - improved layout/styling */
-  margin: 0; /* gap handles spacing now */
-  padding: 0.75em;
+  padding: 1em;
   border: 1px solid var(--light-grey);
-  border-radius: 8px;
+  border-radius: 10px;
   background: #fff;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  /* make text layout consistent */
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* tighten spacing inside cards (global p padding is too large) */
+.product-card p {
+  padding: 0;
+  margin: 0.35em 0;
 }
 
 .product-card h2,
-.product-card h3,
-.product-card p {
-  margin: 0.5em 0;
+.product-card h3 {
+  margin: 0.4em 0;
 }
 
 .card__brand {
@@ -211,25 +222,36 @@ button {
   line-height: 1.25;
 }
 
-/* W03 - improve product image behavior */
+/* image */
 .product-card img {
   width: 100%;
+  max-width: 230px;
   height: auto;
-  max-width: 220px;
   display: block;
-  margin: 0.25em auto 0.5em;
+  margin: 0.5em auto 0.75em;
 }
 
-/* W03 - mobile friendly: single column cards */
+/* keep price aligned near bottom for nicer cards */
+.product-card .product-card__price,
+.product-card .price {
+  margin-top: auto;
+  padding-top: 0.5em;
+  font-weight: 600;
+}
+
+/* W03 - mobile friendly */
 @media (max-width: 600px) {
   .products {
     padding: 0.5rem;
   }
 
+  .product-list {
+    max-width: 480px;
+  }
+
   .product-card {
-    flex: 1 1 100%;
     max-width: 420px;
-    padding: 1em;
+    min-height: auto;
   }
 }
 
